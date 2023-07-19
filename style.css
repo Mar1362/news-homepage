@@ -1,0 +1,330 @@
+/* we use a mobile-first coding style and the BEM nomenclature */
+
+@font-face {
+    font-family: "Inter";
+    src: url("assets/fonts/Inter-VariableFont_slnt\,wght.ttf");
+}
+
+:root {
+    --color-primary-soft-orange: hsl(35, 77%, 62%);
+    --color-primary-soft-red: hsl(5, 85%, 63%);
+    --color-neutral-off-white: hsl(36, 100%, 99%);
+    --color-neutral-grayish-blue: hsl(233, 8%, 79%);
+    --color-neutral-dark-grayish-blue: hsl(236, 13%, 42%);
+    --color-neutral-very-dark-blue: hsl(240, 100%, 5%);
+
+    font-size: 15px;
+}
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .2s ease;
+}
+img,
+picture {
+    width: 100%;
+    object-fit: contain;
+}
+body {
+    margin: 2em;
+    background-color: var(--color-neutral-off-white);
+}
+
+/* styling the header */
+/* 
+    for the menu we just style it and then hide it
+    so that we can make it appears or disappears with 
+    the javascript by playing with the a hide class and 
+    other class for animation and smoothness.
+*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo {
+    width: 2.8em;
+}
+.header-menu {
+    position: relative;
+}
+.header-menu__button {
+    background: url(assets/images/icon-menu.svg) no-repeat;
+    width: 40px;
+    height: 20px;
+}
+.header-menu__list {
+    position: absolute;
+    right: -100%;
+    top: 100%;
+    width: 65vw;
+    height: 100vh;
+    background-color: var(--color-neutral-off-white);
+    list-style-type: none;
+    padding-left: 150%;
+    padding-top: 200%;
+}
+.header-menu__list__item {
+    margin-bottom: 1.5em;
+    font-family: Inter;
+    font-weight: 400;
+}
+.header-menu__list__item a {
+    color: var(--color-neutral-very-dark-blue);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+.header-menu__list__item a:hover{
+    color: var(--color-primary-soft-red);
+}
+
+/* we put some animation and utility class to handled that with the js */
+@keyframes opening-animation {
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+@keyframes closing-animation {
+    from{
+        transform: translate(0);
+    }
+    to{
+        transform: translateX(100%);
+        display: none;
+        opacity: 0;
+    }
+}
+.anime{
+    animation: opening-animation 1s ease;
+}
+.header-menu__list--hidden {
+    animation: closing-animation 1s ease-out forwards;
+}
+
+/* Styling the "featured" section */
+.featured {
+    margin-top: 2em;
+}
+/* .featured__illustration {} */
+.featured__title {
+    margin-top: 1em;
+    font-family: Inter;
+    font-weight: 800;
+    font-size: 2.5em;
+}
+.featured__description {
+    margin-top: 1em;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 1.8em;
+    font-size: .95em;
+}
+.featured__button {
+    margin-top: 2em;
+    width: 50%;
+    padding-block: 1.5em;
+    background-color: var(--color-primary-soft-red);
+    border: none;
+    
+}
+.featured__button a {
+    text-decoration: none;
+    color: var(--color-neutral-off-white);
+    font-family: Inter;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+.featured__button:hover{
+    background-color: var(--color-neutral-very-dark-blue);
+}
+.featured__button:hover a{
+    color: var(--color-neutral-off-white);
+}
+
+/* Styling the "new" section */
+.new {
+    margin-top: 2.7em;
+    background-color: var(--color-neutral-very-dark-blue);
+    color: var(--color-neutral-grayish-blue);
+    padding: 1.5em;
+    font-family: Inter;
+    font-weight: 600;
+}
+.new__title {
+    color: var(--color-primary-soft-orange);
+}
+.new-article {
+    border-bottom: 1px solid var(--color-neutral-dark-grayish-blue);
+    padding-block: 2em;
+}
+.new-article:last-child {
+    border-bottom: none;
+}
+.new-article__title {
+    font-size: 1.2em;
+}
+.new-article__title:hover{
+    color: var(--color-primary-soft-orange);
+    cursor: pointer;
+}
+.new-article__description {
+    font-weight: 200;
+    margin-top: 1em;
+}
+
+/* Styling the "top3" section */
+.top3 {
+    margin-top: 4em;
+    font-family: Inter;
+    font-weight: 800;
+}
+.top3-article {
+    margin-top: 1.5em;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+/* .top3-article-illustration {}
+.top3-article-content {} */
+.top3-article-content__rank {
+    font-size: 2em;
+    color: var(--color-neutral-grayish-blue);
+}
+.top3-article-content__title {
+    margin-top: .5em;
+    font-size: 1.1em;
+}
+.top3-article-content__title:hover{
+    color: var(--color-primary-soft-red);
+    cursor: pointer;
+}
+.top3-article-content__description {
+    font-weight: 200;
+    margin-top: .4em;
+    font-size: .9em;
+    line-height: 1.6em;
+}
+
+/* quick margin on the footer */
+footer {
+    margin-top: 5em !important;
+}
+/* handling bigger screen */
+@media only screen and (min-width: 600px){
+    :root{
+        font-size: 20px;
+    }
+}
+/* styling the bigger screen format */
+@media only screen and (min-width: 960px) {
+    :root {
+        font-size: 13px;
+    }
+
+    .header__logo{
+        width: 3.8em;
+    }
+    .header-menu {
+        position: unset;
+    }
+    .header-menu__button {
+        display: none;
+    }
+    .header-menu__list {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: none;
+        padding: 0;
+        display: flex;
+        gap: 2.5em;
+
+    }
+    .header-menu__list--hidden{
+        animation: none;
+        display: flex;
+    }
+    .header-menu__list__item {
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        align-items: start;
+        justify-content: stretch;
+        align-items: stretch;
+        gap: 2.5em;
+    }
+
+    .top3 {
+        grid-column: 1 / 3;
+        display: flex;
+        align-items: baseline;
+        gap: 2em;
+    }
+
+    .featured {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.2em;
+        font-size: 1.4em;
+        text-align: left;
+        gap: 2em 0em;
+        /* align-items: start; */
+    }
+    .featured__illustration {
+        grid-column: 1 / 3;
+    }
+    .featured__description,
+    .featured__button {
+        grid-column: 2 / 3;
+        margin: 0;
+    }
+    .featured__description{
+        font-weight: 300;
+    }
+    .featured__title {
+        grid-row: 2 / 5;
+        line-height: 1.4em;
+        padding-right: 2em;
+        margin: 0;
+    }
+
+    .new__title{
+        font-size: 3em;
+    }
+    .new-article{
+        padding-block: 3.1em;
+    }
+    .new-article__description{
+        font-size: 1em;
+    }
+    .top3-article-content{
+        font-size: 1.25em;
+    }
+}
+@media only screen and (min-width: 1102px) {
+    :root {
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 1327px) {
+    :root {
+        font-size: 16px;
+    }
+    .featured__title{
+        padding-right: 3em;
+    }
+}
